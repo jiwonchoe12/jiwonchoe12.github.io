@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width", initial-scale="1.0">
+      <meta charset="UTF-8">
+
+        <style>
+            .investment-sharing {
+              background-color: #fff;
+              display: flex;
+              max-width: 480px;
+              width: 100%;
+              padding: 13px 0 0;
+              flex-direction: column;
+              overflow: hidden;
+              align-items: center;
+              margin: 0 auto;
+              font-family: Inter, sans-serif;
+            }
+            
+            .header-image {
+              width: 100%;
+            }
+
+            .header {
+              display: flex;
+              width: 100%;
+              max-width: 341px;
+              align-items: flex-start;
+              justify-content: space-between;
+              gap: 20px;
+            }
+            
+            .greeting {
+              color: #000;
+              align-self: flex-end;
+              font-size: 18px;
+              font-weight: 600;
+              margin-top: 0;
+            }
+            
+            .icon-group {
+              display: flex;
+              margin-top: 4px;
+              gap: 5px;
+            }
+            
+            .icon {
+              width: 17px;
+            }
+            
+            .icon-small {
+              width: 15px;
+            }
+            
+            .icon-large {
+              width: 24px;
+            }
+            
+            .nav-tabs {
+              display: flex;
+              margin-top: 20px;
+              width: 100%;
+              max-width: 300px;
+              gap: 1px;
+              font-size: 12px;
+              font-weight: 600;
+            }
+            
+            .tab-active {
+              border-radius: 10px;
+              background-color: #2260bf;
+              color: #fdfdff;
+              padding: 7px 50px;
+              padding-left: 46px;
+            }
+            
+            .tab-inactive {
+              border-radius: 10px;
+              background-color: #fff;
+              color: #575759;
+              padding: 7px 56px;
+            }
+            
+            .search-bar {
+              border-radius: 8px;
+              background-color: #eaeaeb;
+              display: flex;
+              margin-top: 18px;
+              width: 100%;
+              max-width: 345px;
+              color: #a7a7a9;
+              padding: 9px 13px;
+              font-size: 15px;
+              font-weight: 400;
+              align-items: center;
+            }
+            
+            .search-icon {
+              width: 12px;
+              margin-right: 13px;
+            }
+            
+            .filter-group {
+              display: flex;
+              margin-top: 18px;
+              width: 100%;
+              max-width: 345px;
+              align-items: center;
+              justify-content: space-between;
+              color: #a7a7a9;
+              font-size: 12px;
+              font-weight: 600;
+            }
+            
+            .filter-active {
+              border-radius: 20px;
+              background-color: #2260bf;
+              color: #fff;
+              padding: 10px 18px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              width: 135px;
+            }
+            
+            .filter-inactive {
+              border-radius: 20px;
+              background-color: #eaeaeb;
+              padding: 10px 17px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              width: 90px;
+            }
+            
+            .arrow-icon {
+              width: 11px;
+            }
+            
+            .investment-list {
+              display: flex;
+              margin-top: 18px;
+              width: 100%;
+              max-width: 345px;
+              flex-direction: column;
+              align-items: center;
+            }
+            
+            .investment-item {
+              border-radius: 10px;
+              background-color: #fff;
+              box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+              display: flex;
+              width: 100%;
+              padding: 8px 19px;
+              margin-bottom: 11px;
+            }
+
+            .investment-item:hover {
+                background-color: #f0f0f0; /* 배경색 변경 */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 선택된 것 같은 그림자 효과 */
+                border-color: #00aaff; /* 테두리 색 강조 */
+            }
+            
+            .user-info {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              color: #a7a7a9;
+              font-size: 12px;
+              font-weight: 600;
+              width: 41px;
+            }
+            
+            .user-avatar {
+              width: 41px;
+              border-radius: 50%;
+            }
+            
+            .investment-details {
+              display: flex;
+              flex-grow: 1;
+              justify-content: space-between;
+              align-items: center;
+              margin-left: 34px;
+            }
+            
+            .stock-info {
+              display: flex;
+              flex-direction: column;
+            }
+            
+            .stock-name {
+              color: #000;
+              font-size: 15px;
+              font-weight: 400;
+            }
+            
+            .stock-price {
+              color: #2260bf;
+              font-size: 12px;
+              font-weight: 600;
+              margin-top: 9px;
+            }
+            
+            .profit-info {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-end;
+            }
+            
+            .profit-amount {
+              font-size: 12px;
+              font-weight: 600;
+            }
+            
+            .profit-percentage {
+              font-size: 10px;
+              font-weight: 400;
+            }
+            
+            .profit-positive {
+              color: #f00;
+            }
+            
+            .profit-negative {
+              color: #1877f2;
+            }
+            
+            .divider {
+              width: 1px;
+              background-color: #575759;
+              align-self: stretch;
+              margin: 0 16px;
+            }
+            
+            .seed-ratio {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              color: #a7a7a9;
+              font-size: 10px;
+              width: 90px;
+            }
+            
+            .progress-bar {
+              width: 100%;
+              height: 8px;
+              background-color: #d7d7d9;
+              border-radius: 30px;
+              margin-top: 9px;
+              position: relative;
+            }
+            
+            .progress {
+              position: absolute;
+              left: 0;
+              top: 0;
+              height: 100%;
+              background-color: #2260bf;
+              border-radius: 40px;
+              width: 35px;
+            }
+            
+            .progress-text {
+              font-size: 6px;
+              font-weight: 600;
+              margin-top: 2px;
+            }
+            
+            .footer-image {
+              width: 100%;
+              margin-top: 16px;
+            }
+            
+            @media (max-width: 640px) {
+              .tab-active {
+                padding-left: 46px;
+              }
+            }
+            
+            .visually-hidden {
+              position: absolute;
+              width: 1px;
+              height: 1px;
+              padding: 0;
+              margin: -1px;
+              overflow: hidden;
+              clip: rect(0, 0, 0, 0);
+              white-space: nowrap;
+              border: 0;
+            }
+
+            #search-input {
+                width: 100%;
+                background-color: unset;
+                border: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        
+    <section class="investment-sharing">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c497a75086fbac19cad89e7d210411046e6fd987768ea15d5bcf14001cecdf53?placeholderIfAbsent=true&apiKey=c2d528648bcf4c5681c6332b4529b0aa" alt="" class="header-image" />
+
+        <header class="header">
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2e865d5dd814a175a993442dda679bd30217fa5bee48c7ab6f712d407d7ca3df?placeholderIfAbsent=true&apiKey=2e86d217fd3d4d34b97b37d2c50229d2" alt="" class="status-icon" />
+          <h1 class="greeting">안녕하살법</h1>
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5e2ba41b101bc97d2a75cb2b318485480fe51d874e15efce3a3c24c5d75963ca?placeholderIfAbsent=true&apiKey=2e86d217fd3d4d34b97b37d2c50229d2" alt="" class="icon-large" />
+        </header>
+      
+        <nav class="nav-tabs">
+          <a href="#" class="tab-active">투자 공유</a>
+          <a href="C:\Users\campus3S036\Desktop\test\chatting_page.html" class="tab-inactive">채팅방</a>
+        </nav>
+      
+        <form class="search-bar" role="search">
+          <label for="search-input" class="visually-hidden">투자 현항이 궁금한 그룹원을 검색해보세요</label>
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b02f7e1f519d8541a9df99da1152ebc4d050413c5083959cc44bc9bd6f074df1?placeholderIfAbsent=true&apiKey=2e86d217fd3d4d34b97b37d2c50229d2" alt="" class="search-icon" />
+          <input type="search" id="search-input" placeholder="투자 현항이 궁금한 그룹원을 검색해보세요" />
+        </form>
+      
+        <div class="filter-group">
+          <button class="filter-active">
+            김투자 외 6
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/39c6a6ae3eb244fe88a15f81eb60ca9d6d2a26d56ce25d3ee665524de9dca169?placeholderIfAbsent=true&apiKey=2e86d217fd3d4d34b97b37d2c50229d2" alt="" class="arrow-icon" />
+          </button>
+          <button class="filter-inactive">
+            종목
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/88cf25a305da50a47a8ea4f8ab282b1cf235e6b07b628fc18428fca71d76748c?placeholderIfAbsent=true&apiKey=2e86d217fd3d4d34b97b37d2c50229d2" alt="" class="arrow-icon" />
+          </button>
+          <button class="filter-inactive">
+            수익
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/88cf25a305da50a47a8ea4f8ab282b1cf235e6b07b628fc18428fca71d76748c?placeholderIfAbsent=true&apiKey=2e86d217fd3d4d34b97b37d2c50229d2" alt="" class="arrow-icon" />
+          </button>
+        </div>
+      
+        <div class="investment-list">
+          <li class="investment-item">
+            <div class="user-info">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b036a9a7e4a65b072368e39a5ea8f1405239f3bfbaadf3dfcc3f492e8e40883a?placeholderIfAbsent=true&apiKey=2e86d217fd3d4d34b97b37d2c50229d2" alt="김투자 프로필" class="user-avatar" />
+              <span>김투자</span>
+            </div>
+            <div class="investment-details">
+              <div class="stock-info">
+                <span class="stock-name">삼성전자</span>
+                <span class="stock-price">71,800원</span>
+              </div>
+              <div class="profit-info profit-positive">
+                <span class="profit-amount">+300원</span>
+                <span class="profit-percentage">0.42%</span>
+              </div>
+              <div class="divider"></div>
+              <div class="seed-ratio">
+                <span>시드 대비 비율</span>
+                <div class="progress-bar">
+                  <div class="progress"></div>
+                </div>
+                <span class="progress-text">30%</span>
+              </div>
+            </div>
+          </li>
+          <li class="investment-item">
+            <div class="user-info">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4422f033920007919d12a7c4217a1ab46ef88045f0a5091fdd576f086d82c5ef?placeholderIfAbsent=true&apiKey=2e86d217fd3d4d34b97b37d2c50229d2" alt="김투자 프로필" class="user-avatar" />
+              <span>김투자</span>
+            </div>
+            <div class="investment-details">
+              <div class="stock-info">
+                <span class="stock-name">삼성전자</span>
+                <span class="stock-price">71,800원</span>
+              </div>
+              <div class="profit-info profit-negative">
+                <span class="profit-amount">-300원</span>
+                <span class="profit-percentage">-0.42%</span>
+              </div>
+              <div class="divider"></div>
+              <div class="seed-ratio">
+                <span>시드 대비 비율</span>
+                <div class="progress-bar">
+                  <div class="progress"></div>
+                </div>
+                <span class="progress-text">30%</span>
+              </div>
+            </div>
+          </li>
+          <li class="investment-item">
+            <div class="user-info">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/066b392d576ccccdedf14a2dc54b3d55e7ab64de1d054b5cf6e2bedf6d8cb830?placeholderIfAbsent=true&apiKey=2e86d217fd3d4d34b97b37d2c50229d2" alt="김투자 프로필" class="user-avatar" />
+              <span>김투자</span>
+            </div>
+            <div class="investment-details">
+              <div class="stock-info">
+                <span class="stock-name">삼성전자</span>
+                <span class="stock-price">71,800원</span>
+              </div>
+              <div class="profit-info profit-positive">
+                <span class="profit-amount">+300원</span>
+                <span class="profit-percentage">0.42%</span>
+              </div>
+              <div class="divider"></div>
+              <div class="seed-ratio">
+                <span>시드 대비 비율</span>
+                <div class="progress-bar">
+                  <div class="progress"></div>
+                </div>
+                <span class="progress-text">30%</span>
+              </div>
+            </div>
+          </li>
+          <li class="investment-item">
+            <div class="user-info">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c5969399a6c0762fac47ebe28649f73e20a39484484520848ba41b757ce0ac5d?placeholderIfAbsent=true&apiKey=2e86d217fd3d4d34b97b37d2c50229d2" alt="김투자 프로필" class="user-avatar" />
+              <span>김투자</span>
+            </div>
+            <div class="investment-details">
+              <div class="stock-info">
+                <span class="stock-name">삼성전자</span>
+                <span class="stock-price">71,800원</span>
+              </div>
+              <div class="profit-info profit-positive">
+                <span class="profit-amount">+300원</span>
+                <span class="profit-percentage">0.42%</span>
+              </div>
+              <div class="divider"></div>
+              <div class="seed-ratio">
+                <span>시드 대비 비율</span>
+                <div class="progress-bar">
+                  <div class="progress"></div>
+                </div>
+                <span class="progress-text">30%</span>
+              </div>
+            </div>
+          </li>
+          <li class="investment-item">
+            <div class="user-info">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/7a3d59084ef927fac2a42513dac72dba6f5233c8601814c1c4fd41eef712dcb9?placeholderIfAbsent=true&apiKey=2e86d217fd3d4d34b97b37d2c50229d2" alt="김투자 프로필" class="user-avatar" />
+              <span>김투자</span>
+            </div>
+            <div class="investment-details">
+              <div class="stock-info">
+                <span class="stock-name">삼성전자</span>
+                <span class="stock-price">71,800원</span>
+              </div>
+              <div class="profit-info profit-positive">
+                <span class="profit-amount">+300원</span>
+                <span class="profit-percentage">0.42%</span>
+              </div>
+              <div class="divider"></div>
+              <div class="seed-ratio">
+                <span>시드 대비 비율</span>
+                <div class="progress-bar">
+                  <div class="progress"></div>
+                </div>
+                <span class="progress-text">30%</span>
+              </div>
+            </div>
+          </li>
+          <li class="investment-item">
+            <div class="user-info">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0b1dd3f419783833411efdc2c06d96917a047cd74fa2687e1c617ac5dd39ced0?placeholderIfAbsent=true&apiKey=2e86d217fd3d4d34b97b37d2c50229d2" alt="김투자 프로필" class="user-avatar" />
+              <span>김투자</span>
+            </div>
+            <div class="investment-details">
+              <div class="stock-info">
+                <span class="stock-name">삼성전자</span>
+                <span class="stock-price">71,800원</span>
+              </div>
+              <div class="profit-info profit-positive">
+                <span class="profit-amount">+300원</span>
+                <span class="profit-percentage">0.42%</span>
+              </div>
+              <div class="divider"></div>
+              <div class="seed-ratio">
+                <span>시드 대비 비율</span>
+                <div class="progress-bar">
+                  <div class="progress"></div>
+                </div>
+                <span class="progress-text">30%</span>
+              </div>
+            </div>
+          </li>
+        </div>
+      
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c81f2f1be3faf273ffca18e2956ffe747da309fcaa6e50bf2c027b2fe6c00747?placeholderIfAbsent=true&apiKey=2e86d217fd3d4d34b97b37d2c50229d2" alt="" class="footer-image" />
+    </section>
+    </body>
+</html>
